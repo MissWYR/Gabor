@@ -49,7 +49,7 @@ def getGabor(img,filters):
             fimg = cv2.filter2D(img, cv2.CV_8UC1, kern)
             accum = np.maximum(accum, fimg, accum)
             accum_name='Gabor_'+str(id)+'.png'
-            cv2.imwrite(accum_name,accum)
+            #cv2.imwrite(accum_name,accum)
         res.append(np.asarray(accum))
 
     #用于绘制滤波效果
@@ -58,6 +58,8 @@ def getGabor(img,filters):
     for temp in range(len(res)):
         id+=1
         # plt.savefig('Gabor_%d.png'%id)
+        temp_name = 'result_' + str(id) + '.png'
+        cv2.imwrite(temp_name,res[temp])
         plt.subplot(4,6,temp+1)
         plt.imshow(res[temp], cmap='gray')
     plt.show()
